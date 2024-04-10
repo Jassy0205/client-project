@@ -15,5 +15,6 @@ export class User{
         });
 
         console.log(response);
+        return response
     }
 }

@@ -1,4 +1,4 @@
-const SERVER_IP = "http://localhost:3000"
+const SERVER_IP = "http://localhost:3002"
 const API_URL = `${SERVER_IP}/api/v1`;
 
 export const ENV = {

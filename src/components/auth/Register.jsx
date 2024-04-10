@@ -8,6 +8,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const userController = new User();
 
@@ -16,12 +19,14 @@ export const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = React.useState(false);
+  const [repeatPassword, setRepeatPassword] = React.useState(false);
   const [role, setRole] = useState("");
   const [activeStatus, setActiveStatus] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowRepeatPassword = () => setRepeatPassword((show) => !show);
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
@@ -35,14 +40,16 @@ export const Register = () => {
       active_status: activeStatus,
     }
 
-    const response = await userController.signUp({data});
+    const response = await userController.signUp(data);
     console.log(response);
+
+    response.status === 201? alert("Usuario registrado") : alert("Error al registrar usuario");
   };
 
   return (
 
     <>
-      <div>
+      <div className = "card-register">
         <TextField
           id="standard-basic"
           label="Nombre"
@@ -67,32 +74,72 @@ export const Register = () => {
           onChange= {(e) => setEmail(e.target.value)}
         />
 
-        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-        <OutlinedInput
-          id="outlined-adornment-password"
-          type={showPassword ? 'text' : 'password'}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
+        <div className = "row-style">
 
-          label="Password"
-        />
+          <InputLabel htmlFor="outlined-adornment-password"></InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? 'text' : 'password'}
+            onChange={(e) => setShowPassword(e.target.value)}
+            endAdornment ={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+
+            value={showPassword}
+          />
+
+          <InputLabel htmlFor="repeatPassword"></InputLabel>
+          <OutlinedInput
+            id="repeatPassword"
+            type={repeatPassword ? 'text' : 'password'}
+            onChange={(e) => setRepeatPassword(e.target.value)}
+            endAdornment ={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowRepeatPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {repeatPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+
+            value={repeatPassword}
+          />
+        </div>
+
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Rol</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={role}
+            label="Age"
+            onChange={(e) => setRole(e.target.value)}
+          >
+            <MenuItem value={10}>Admin</MenuItem>
+            <MenuItem value={20}>Guess</MenuItem>
+            <MenuItem value={30}>Client</MenuItem>
+          </Select>
+        </FormControl>
 
         <Button
           variant="contained"
           disableElevation
           onClick={handleRegister}
         >
-          Disable elevation
+          Registrar usuario 
         </Button>
 
       </div>
