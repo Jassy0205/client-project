@@ -1,9 +1,10 @@
 import { Register } from './components/auth/Register';
+import { Login } from './components/auth/login';
 import './App.css';
 
 function App() {
   return (
-    <Register />
+    <Login />
   );
 }
 

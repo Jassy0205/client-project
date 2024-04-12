@@ -31,6 +31,7 @@ export const Register = () => {
   };
 
   const handleRegister = async () => {
+
     const data ={
       user_name: userName,
       lastname: lastName,
@@ -47,32 +48,36 @@ export const Register = () => {
   };
 
   return (
-
     <>
       <div className = "card-register">
-        <TextField
-          id="standard-basic"
+        <TextField 
+          id="outlined-basic"
           label="Nombre"
           variant="standard"
           value={userName}
           onChange= {(e) => setUserName(e.target.value)}
+          fullWidth
         />
 
         <TextField
-          id="standard-basic"
+          id="outlined-basic"
           label="Apellidos"
           variant="standard"
           value={lastName}
           onChange= {(e) => setLastName(e.target.value)}
+          fullWidth
         />
 
-        <TextField
-          id="standard-basic"
-          label="Email"
-          variant="standard"
-          value={email}
-          onChange= {(e) => setEmail(e.target.value)}
-        />
+        <div className = "email-input">
+          <TextField 
+            id="outlined-basic"
+            label="Email"
+            value={email}
+            onChange= {(e) => setEmail(e.target.value)}
+            type="email"
+            fullWidth
+          />
+        </div>
 
         <div className = "row-style">
 
@@ -141,9 +146,7 @@ export const Register = () => {
         >
           Registrar usuario 
         </Button>
-
       </div>
     </>
-    
-  )
+  );
 };
