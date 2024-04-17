@@ -22,3 +22,9 @@ body{
 .email-input{
   margin-top: 10px;
 }
+
+.contraseña{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 33.7vw;
+}

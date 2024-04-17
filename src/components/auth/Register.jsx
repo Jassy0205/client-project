@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'; 
 import { User } from "../../request/User";
-import TextField from '@mui/material/TextField'; 
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField'; 
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Visibility from '@mui/icons-material/Visibility';
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const userController = new User();
 
@@ -146,6 +149,9 @@ export const Register = () => {
         >
           Registrar usuario 
         </Button>
+        <Typography align="center">
+          <Link to="/">Login</Link>
+        </Typography>
       </div>
     </>
   );
